@@ -4,23 +4,27 @@ const userSchema = new mongoose.Schema({
 
     firstName : {
         type : String,
-        required : true
+        required : true,
+        match: [/^[A-Za-z]+$/, "First name should contain only letters"]
     },
     lastName : {
         type : String, 
-        required : false
+        required : false,
+        match: [/^[A-Za-z]+$/, "Last name should contain only letters"]
     }, 
     email : {
         type : String, 
         required : true, 
-        unique : true
+        unique : true,
+        match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"]
     },
     jobTitle : {
         type : String,
         required : true
     },
     gender : {
-        type : String
+        type : String,
+        enum: ["Male", "Female", "Other"]
     }
 
 },{timestamps : true});
